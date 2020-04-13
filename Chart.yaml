@@ -1,0 +1,5 @@
+apiVersion: v2
+description: Zeebe Simple Monitor Helm Chart
+name: zeebe-simple-monitor
+version: 1.0.0
+appVersion: v1

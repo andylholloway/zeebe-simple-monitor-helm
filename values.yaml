@@ -1,0 +1,13 @@
+replicas: 1
+servicePort: 8280
+servicePortName: http-web
+
+imageName: "camunda/zeebe-simple-monitor"
+imageTag: "0.17.0"
+containerPort: 8080
+
+
+zeebeServiceName: zeebe
+zeebeServicePort: 26500
+
+hazelcastPort: 5701
