@@ -1,0 +1,4 @@
+Docker Image used: {{ .Values.imageName }}:{{ .Values.imageTag }}
+
+In a browser go to `localhost:{{ .Values.servicePort }}`
+

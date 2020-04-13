@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Release.Name }}
+        image: {{ .Values.imageName }}:{{ .Values.imageTag }}
+        env:
+        - name: "io.zeebe.monitor.connectionString"
+          value: "{{ .Values.zeebeServiceName }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.zeebeServicePort }}"
+        - name: "io.zeebe.monitor.hazelcast.connection"
+          value: "{{ .Values.zeebeServiceName }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.hazelcastPort }}"
+        ports:
+        - containerPort: {{ .Values.containerPort }}
+          name: {{ default "http" .Values.servicePortName }}
